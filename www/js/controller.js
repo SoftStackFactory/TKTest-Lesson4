@@ -235,12 +235,16 @@ TKAnswersService, ServerAnswersService, $ionicHistory) {
     }
     
 }])
-.controller('ResultsCtrl', ['$scope', 'TKAnswersService', '$ionicHistory',
-function($scope, TKAnswersService, $ionicHistory) {
+.controller('ResultsCtrl', ['$scope', 'TKAnswersService', '$ionicHistory', '$state',
+function($scope, TKAnswersService, $ionicHistory, $state) {
     
     $scope.menuButtonTapped = function()
     {
-        $ionicHistory.goToHistoryRoot($ionicHistory.currentView().historyId);
+        $ionicHistory.nextViewOptions({
+           historyRoot: true,
+           disableBack: true
+        });
+        $state.go('lobby');
     };
     
     $scope.labels = ["Competing", "Collaborating", "Compromising", "Avoiding", "Accommodating"];

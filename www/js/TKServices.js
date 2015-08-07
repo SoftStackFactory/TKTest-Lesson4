@@ -1,4 +1,4 @@
-angular.module('TKQuestionsModule', [])
+angular.module('TKServicesModule', [])
 .service('TKQuestionsService', function () {
     var service = this;
     var questions = [];
@@ -34,12 +34,11 @@ angular.module('TKQuestionsModule', [])
         "accommodating": 0
     };
     var answers = {};
-    var lastAnswer = "";
+    
     service.saveAnswer = function(questionNumber, answerCategory, option)
     {
         answerCategories[answerCategory.toLowerCase()]++;
         answers[questionNumber] = option;
- //       lastAnswer = answerCategory;
     };
     
     service.getAnswers = function()
@@ -52,8 +51,4 @@ angular.module('TKQuestionsModule', [])
         answerCategories = answers;
     };
     
-    service.eraseLastAnswer = function()
-    {
-        answerCategories[lastAnswer.toLowerCase()]--;
-    };
 });
