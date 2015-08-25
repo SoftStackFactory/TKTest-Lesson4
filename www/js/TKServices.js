@@ -19,10 +19,10 @@ angular.module('TKServicesModule', [])
         return results;
     };
     
-    service.getQuestionLenght = function()
+    service.questionsLength = function()
     {
         return questions.length;
-    }
+    };
 })
 .service('TKAnswersService', function () {
     var service = this;

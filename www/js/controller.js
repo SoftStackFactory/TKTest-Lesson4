@@ -128,10 +128,8 @@ function($scope, $state, $ionicHistory, ServerQuestionService, TKQuestionsServic
     };
     
     //Get Questions Initially if they are not already stored
-    if($window.localStorage.questions === undefined)
+    if(TKQuestionsService.questionsLength() === 0)
         getQuestions();
-    else
-        TKQuestionsService.setQuestions(JSON.parse($window.localStorage.questions));
         
     function getQuestions()
     {
@@ -140,7 +138,6 @@ function($scope, $state, $ionicHistory, ServerQuestionService, TKQuestionsServic
             if (response.status === 200) {
                 var questions = response.data;
                 TKQuestionsService.setQuestions(questions);
-                $window.localStorage.questions = JSON.stringify(questions);
             } else {
                 // invalid response
                 confirmPrompt();
@@ -162,7 +159,7 @@ function($scope, $state, $ionicHistory, ServerQuestionService, TKQuestionsServic
     
     $scope.takeTestButtonTapped = function()
     {
-        if($window.localStorage.questions === undefined)
+        if(TKQuestionsService.questionsLength() === 0)
             getQuestions();
         else {
             $state.go('test.detail',{testID:1});
